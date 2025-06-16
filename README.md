@@ -32,22 +32,19 @@ AirBooker es una plataforma web moderna y completa para la reservación de vuelo
 ## 📸 Capturas de pantalla
 
 ### 🏠 Página Principal
-![Descripción de la imagen](https://github.com/user-attachments/assets/bfea3afa-7809-4d83-839d-b55ef202c95e)
+![Página Principal](https://github.com/user-attachments/assets/bfea3afa-7809-4d83-839d-b55ef202c95e)
 
 ### 🔍 Resultados de Búsqueda
-```
-[Insertar captura de la página de vuelos disponibles con filtros]
-```
+![Resultados de Búsqueda](https://github.com/user-attachments/assets/7f360aca-1c49-4555-a28f-8424a476687a)
 
 ### 🛒 Carrito de Compras
-```
-[Insertar captura del carrito con vuelos agregados]
-```
+![Carrito de Compras](https://github.com/user-attachments/assets/e781678a-526b-475c-a1c5-f606d8eeff5a)
+
 
 ### 📊 Panel de Administración
-```
-[Insertar captura del dashboard administrativo]
-```
+![ Panel de Administración](https://github.com/user-attachments/assets/92b057e9-4c51-432f-82de-984e396a315a)
+
+
 
 ## 🛠️ Tecnologías utilizadas
 
