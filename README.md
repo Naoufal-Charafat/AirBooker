@@ -32,9 +32,7 @@ AirBooker es una plataforma web moderna y completa para la reservación de vuelo
 ## 📸 Capturas de pantalla
 
 ### 🏠 Página Principal
-```
-![Descripción](https://github.com/user-attachments/assets/bfea3afa-7809-4d83-839d-b55ef202c95e)
-```
+![Descripción de la imagen](https://github.com/user-attachments/assets/bfea3afa-7809-4d83-839d-b55ef202c95e)
 
 ### 🔍 Resultados de Búsqueda
 ```
