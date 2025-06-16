@@ -1,0 +1,142 @@
+/* Estilos del Header */
+body {
+    padding-top: 115px; /* Ajusta este valor según la altura de tu navbar */
+}
+
+.header-container .top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-container .navbar {
+    position: fixed;
+    top: 40px; /* Altura del top-bar */
+    width: 100%;
+    z-index: 999;
+    background: linear-gradient(to right, #003366 60%, #003366c9 ); /* Efecto horizontal */ 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.header-container .navbar.glass {
+    background: #003399a1 !important;
+    backdrop-filter: blur(10px);
+}
+
+.header-container .navbar.glass .nav-link,
+.header-container .navbar.glass .btn-access {
+    color: white !important;
+}
+
+.header-container .navbar-brand img {
+    max-height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.header-container .navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+.header-container .nav-link {
+    color: white !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.header-container .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffd700;
+    bottom: 5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.header-container .nav-link:hover::after {
+    width: 100%;
+}
+
+.header-container .btn-access {
+    background-color: #FFC107;
+    color: #003399;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
+.header-container .btn-access:hover {
+    animation: heartbeat 0.8s infinite;
+    background-color: #d4af37;
+}
+
+.header-container .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='gold' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.header-container .navbar-toggler {
+    border: 2px solid gold;
+    border-radius: 3px;
+    padding: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px; /* Ajusta este valor según la altura del top-bar */
+    }
+    
+    .ocultar-informacion-telef-email-top-bar{
+        display: none;
+    }
+
+    .header-container .navbar {
+        top: 40px; /* Altura del top-bar */
+    }
+
+    .header-container .navbar-collapse {
+        position: fixed;
+        top: 80px; /* Altura combinada de top-bar y navbar */
+        left: -250px;
+        width: 250px;
+        height: calc(100vh - 80px);
+        background: linear-gradient(135deg, #003399 0%, #0055ff 100%);
+        transition: left 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto;
+    }
+
+    .header-container .navbar-collapse.show {
+        left: 0;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    .header-container .opciones-menu {
+        padding-left: 15px;
+        padding-top: 5px;
+    }
+
+    .header-container .btn-access {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        border-radius: 0% !important;
+    }
+
+    .header-container .navbar-toggler:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
