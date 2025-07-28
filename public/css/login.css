@@ -1,0 +1,86 @@
+/* Estilos modernos y futuristas para la página de login */
+
+body .futuristic-bg {
+  background: linear-gradient(135deg, #0a2540 0%, #2563eb 50%, #38bdf8 100%);
+  min-height: 100vh;
+  font-family: "Rubik Mono One", "Montserrat", Arial, sans-serif;
+}
+
+.login-glass {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 2rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s;
+}
+.login-glass:hover {
+  box-shadow: 0 12px 40px 0 rgba(59, 130, 246, 0.25);
+}
+
+.futurista-title {
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #2563eb, 0 0px 2px #fff;
+  font-family: "Rubik Mono One", "Montserrat", Arial, sans-serif;
+}
+
+input[type="email"],
+input[type="password"] {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid #2563eb;
+  color: #0a2540;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+
+button[type="submit"] {
+  background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
+}
+
+label {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Animación de entrada */
+.login-glass {
+  animation: glassFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes glassFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login-glass {
+    padding: 1.5rem;
+  }
+  .futurista-title {
+    font-size: 2rem;
+  }
+}
