@@ -18,81 +18,59 @@ use App\Http\Controllers\{
 }; 
 use App\Http\Controllers\Auth\LoginController;
 
-// Rutas públicas
-Route::get('/', [HomeController::class, 'index'])->name('home'); 
+// Página principal
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Rutas de autenticación
 Auth::routes();
+
  
 
+// Contacto
+Route::controller(ContactanosController::class)->prefix('contactanos')->group(function () {
+    Route::get('/', 'showContactanos')->name('contactanos');
+    Route::post('/', 'enviarFormulario')->name('contactanos.enviar');
+});
 
-// Ruta para resultados de búsqueda
-Route::get('/buscar-vuelos', [VueloController::class, 'vuelosDisponibles'])->name('buscar.vuelos');
+// Vuelos y reservas
+Route::controller(CarritoController::class)->prefix('reservas')->group(function () {
+    Route::get('/buscar', [VueloController::class, 'vuelosDisponibles'])->name('buscar.vuelos');
+    Route::get('/checkout', fn() => view('checkout'))->name('checkout');
+    Route::post('/reservar/{vuelo}', 'reservar')->name('reservar.vuelo');
+    Route::post('/procesar', 'procesarCompra')->name('procesar.compra');
+});
 
-// Rutas para carrito y reservas
+// Carrito
 Route::prefix('carrito')->controller(CarritoController::class)->group(function () {
     Route::get('/', 'index')->name('carrito.index');
     Route::delete('/eliminar/{id}', 'eliminar')->name('carrito.eliminar');
 });
 
-
-
-Route::post('/reservar/{vuelo}', [CarritoController::class, 'reservar'])->name('reservar.vuelo');
-
-
-Route::get('/checkout', function () {return view('checkout');})->name('checkout');
-
-Route::post('/procesar-compra', [CarritoController::class, 'procesarCompra'])->name('procesar.compra');
-
-
-
-// Rutas de contactanos
-Route::get('/contactanos', [ContactanosController::class, 'showContactanos'])->name('contactanos');
-Route::post('/contactanos', [ContactanosController::class, 'enviarFormulario'])->name('contactanos.enviar');
-
-// Rutas de autenticación
-Route::prefix('auth')->group(function () {
-    Route::get('signup', [SignUpController::class, 'showSignUp'])->name('signup');
-    Route::post('signup', [SignUpController::class, 'signup']);
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.get');
-    Route::post('login', [LoginController::class, 'login'])->name('login.post');
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout.post');
+// Panel de usuario (requiere autenticación)
+Route::prefix('user')->middleware('auth')->group(function () {
+    Route::get('perfil', [UserController::class, 'show'])->name('user.perfil');
+    Route::get('reservas', [ReservaClienteController::class, 'index'])->name('user.reservas');
+    Route::get('cartera', [UserController::class, 'infoCartera'])->name('user.cartera');
 });
 
-// Rutas del panel de administración
-Route::prefix('admin')->group(function () {
-    // Dashboard
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/', 'dashboard')->name('admin.dashboard');
-        Route::get('/dashboard', 'dashboard')->withoutMiddleware('admin'); // Permitir acceso a usuarios no admin
-    });
+// Panel de administración (requiere middleware 'admin')
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    // Gestión de recursos
-    Route::resource('users', UserController::class);
-    Route::resource('reservas', ReservaController::class);
-    Route::resource('vuelos', VueloController::class);
-    Route::resource('aerolineas', AerolineaController::class);
-    Route::resource('ofertas', OfertaController::class); 
-
+    Route::resources([
+        'users'      => UserController::class,
+        'reservas'   => ReservaController::class,
+        'vuelos'     => VueloController::class,
+        'aerolineas' => AerolineaController::class,
+        'ofertas'    => OfertaController::class,
+    ]);
 });
 
-Route::get('/api/usuarios', [UserController::class, 'buscar']);
-Route::get('/api/vuelos', [VueloController::class, 'filtrar']);
-
-
-// Ruta para mostrar el perfil
-//Route::get('user/perfil/{id}', [UserController::class, 'show']);
-
-// Ruta para mostrar reservas de un usuario
-//Route::get('reservas', [ReservaClienteController::class, 'index']);
-
-// Ruta para mostrar la cartera
-//Route::get('user/cartera', [UserController::class, 'infoCartera']); 
-
-
-Route::prefix('user')->group(function() {
-    Route::get('perfil', [UserController::class, 'show']);
-    Route::get('reservas', [ReservaClienteController::class, 'index']);
-    Route::get('cartera', [UserController::class, 'infoCartera']);
+// API (debería moverse idealmente a routes/api.php)
+Route::prefix('api')->group(function () {
+    Route::get('/usuarios', [UserController::class, 'buscar']);
+    Route::get('/vuelos', [VueloController::class, 'filtrar']);
 });
 
-// Para manejar la suscripción:
+// Suscripción newsletter desde el footer
 Route::post('/subscribe', [FooterController::class, 'subscribe'])->name('subscribe');

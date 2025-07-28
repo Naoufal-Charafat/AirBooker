@@ -81,7 +81,7 @@
 
                 <!-- Botón Acceder -->
                 @guest
-                    <a href="{{ url('auth/login') }}" class="btn btn-access ms-3 pulse">
+                    <a href="{{ url('/login') }}" class="btn btn-access ms-3 pulse">
                         <i class="fas fa-user me-2"></i> ACCEDER
                     </a>
                 @endguest
