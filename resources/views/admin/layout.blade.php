@@ -33,12 +33,12 @@
         <!-- 🟠 SIDEBAR ADMIN -->
         <nav class="sidebar bg-light p-3 d-none d-lg-block" style="width: 250px;">
             <ul class="nav flex-column">
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('dashboard'); return false;">📊 Dashboard</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('users'); return false;">👥 Clientes</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('reservas'); return false;">📅 Reservas</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('vuelos'); return false;">✈️ Vuelos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('aerolineas'); return false;">⭐ Aerolineas</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('ofertas'); return false;">⌚ Ofertas</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/dashboard') }}" class="nav-link">📊 Dashboard</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/users') }}" class="nav-link">�� Clientes</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/reservas') }}" class="nav-link">📅 Reservas</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/vuelos') }}" class="nav-link">✈️ Vuelos</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/aerolineas') }}" class="nav-link">⭐ Aerolineas</a></li>
+                <li class="nav-item"><a href="{{ url('/admin/ofertas') }}" class="nav-link">⌚ Ofertas</a></li>
             </ul>
         </nav>
 
