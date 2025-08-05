@@ -12,7 +12,7 @@
     <!-- Contenido encima del video -->
     <div style="position: relative; z-index: 1;">
         <h2 class="text-center text-uppercase mb-4" style="padding: 0px 5% 0px 5% !important; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: clamp(24px, 5vw, 48px); font-family: 'Rubik Mono One', monospace; font-weight: 400; font-style: normal;">
-            ¡Descubre Holanda con AirBooker a precios increíbles! 00
+            ¡Descubre Holanda con AirBooker a precios increíbles!
         </h2>
         <div class="container_buscador">
             <div class="sombreado">
