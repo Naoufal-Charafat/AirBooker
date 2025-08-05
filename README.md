@@ -1,6 +1,6 @@
 # ✈️ AirBooker - Sistema de Reservación de Vuelos
 
-## 📝 Descripción
+## 📝 Descripción--
 
 AirBooker es una plataforma web moderna y completa para la reservación de vuelos, desarrollada con Laravel. El sistema permite a los usuarios buscar, comparar y reservar vuelos de diferentes aerolíneas, gestionar sus reservas y aprovechar ofertas especiales. Incluye un panel administrativo completo para la gestión integral del negocio.
 
