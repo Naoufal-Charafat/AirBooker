@@ -1,0 +1,49 @@
+name: Deploy to Hostinger (SSH)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: 82.112.243.81
+      SSH_PORT: "65002"
+      SSH_USER: u992710886
+      APP_PATH: /home/u992710886/domains/hibarahack.com/airbooker
+      COMPOSER_BIN: /home/u992710886/bin/composer
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.LARAVEL_HIBARAHACK }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy over SSH
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" bash -s << 'EOF'
+          set -e
+          cd "$APP_PATH"
+
+          git fetch --all --prune
+          git checkout main
+          git pull --ff-only origin main
+
+          export COMPOSER_MEMORY_LIMIT=-1
+          $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+          php artisan config:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan event:cache
+
+          php artisan migrate --force
+          # php artisan queue:restart   # si usas colas
+          EOF
